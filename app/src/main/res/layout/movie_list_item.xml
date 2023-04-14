@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movie"
+            type="com.example.filmfighter.network.Movie" />
+
+        <variable
+            name="clickListener"
+            type="com.example.filmfighter.MovieListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="8dp"
+        android:onClick="@{() -> clickListener.onClick(movie)}"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/poster_imageView"
+                android:layout_width="120dp"
+                android:layout_height="180dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:importantForAccessibility="no"
+                app:imageUrl="@{movie.absulutePosterPath}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic"/>
+
+            <TextView
+                android:id="@+id/title_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/poster_imageView"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="10dp"
+                android:text="@string/title"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:id="@+id/release_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/title_textView"
+                app:layout_constraintStart_toStartOf="@id/title_textView"
+                android:layout_marginTop="10dp"
+                android:text="@string/release" />
+
+            <TextView
+                android:id="@+id/vote_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/release_textView"
+                app:layout_constraintStart_toStartOf="@id/title_textView"
+                android:layout_marginTop="10dp"
+                android:text="@string/average_vote" />
+
+            <TextView
+                android:id="@+id/overview_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/vote_TextView"
+                app:layout_constraintStart_toStartOf="@id/title_textView"
+                android:layout_marginTop="10dp"
+                android:text="@string/genres" />
+
+
+
+
+            <TextView
+                android:id="@+id/movie_title_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="?attr/colorPrimary"
+                android:text="@{movie.title}"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constraintStart_toEndOf="@+id/title_textView"
+                app:layout_constraintBottom_toBottomOf="@id/title_textView"
+                app:layout_constraintTop_toTopOf="@id/title_textView"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Avengers" />
+
+            <TextView
+                android:id="@+id/movie_release_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="?attr/colorPrimary"
+                android:text="@{movie.releaseDate}"
+                app:layout_constraintStart_toEndOf="@id/release_textView"
+                app:layout_constraintBottom_toBottomOf="@id/release_textView"
+                app:layout_constraintTop_toTopOf="@id/release_textView"
+                tools:text="25-11-1998" />
+
+            <TextView
+                android:id="@+id/movie_vote_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="?attr/colorPrimary"
+                android:text="@{movie.voteAverage}"
+                app:layout_constraintStart_toEndOf="@id/vote_TextView"
+                app:layout_constraintBottom_toBottomOf="@id/vote_TextView"
+                app:layout_constraintTop_toTopOf="@id/vote_TextView"
+                tools:text="7.0" />
+
+            <TextView
+                android:id="@+id/movie_overview_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="?attr/colorPrimary"
+                android:text="@{movie.genresString.toString()}"
+                android:maxLines="4"
+                android:ellipsize="end"
+                app:layout_constraintStart_toStartOf="@id/overview_TextView"
+                app:layout_constraintTop_toBottomOf="@id/overview_TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="[Action, Adventure, Fantasy, Science Fiction]" />
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

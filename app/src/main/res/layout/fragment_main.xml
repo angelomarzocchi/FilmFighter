@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.MainFragment">
+
+        <TextView
+            android:id="@+id/film"
+            style="@style/TextAppearance.AppCompat.Display3"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/film_fighter"
+            android:textColor="?attr/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/hostGameButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/film"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/Widget.Material3.Button"
+            android:textAllCaps="true"
+            android:textAppearance="?attr/textAppearanceButton"
+            android:text="@string/host_game"
+            android:layout_marginTop="110dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/joinGameButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/hostGameButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/Widget.Material3.Button"
+            android:textAllCaps="true"
+            android:textAppearance="?attr/textAppearanceButton"
+            android:text="@string/join_game"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
