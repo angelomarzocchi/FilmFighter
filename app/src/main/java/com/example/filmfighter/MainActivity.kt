@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onDisconnected(endpointId: String) {
                 viewModel.resetGame()
-            connectionsClient = Nearby.getConnectionsClient(this@MainActivity)
+           // connectionsClient = Nearby.getConnectionsClient(this@MainActivity)
         }
 
     }
@@ -137,7 +137,7 @@ class MainActivity : AppCompatActivity() {
         val options = AdvertisingOptions.Builder().setStrategy(STRATEGY).build()
         if(isAdvertising){
             connectionsClient.stopAdvertising()
-            connectionsClient.stopAllEndpoints()
+          //  connectionsClient.stopAllEndpoints()
             isAdvertising = false
         }
         isAdvertising = true
@@ -151,16 +151,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startDiscovery() {
+        Log.d("costumPayload","start Discovery")
         val options = DiscoveryOptions.Builder().setStrategy(STRATEGY).build()
         if(isDiscovering){
             connectionsClient.stopDiscovery()
-            connectionsClient.stopAllEndpoints()
+          //  connectionsClient.stopAllEndpoints()
             isDiscovering = false
 
 
         }
         isDiscovering = true
         connectionsClient.startDiscovery(packageName,endpointDiscoveryCallback,options)
+    }
+
+    fun stopNearbyConnections() {
+        if(viewModel.hosting)
+            connectionsClient.stopAdvertising()
+        else
+            connectionsClient.stopDiscovery()
+
+
+
+        connectionsClient.stopAllEndpoints()
+        endpointIds.clear()
+
+
+
     }
 
     fun startGame() {

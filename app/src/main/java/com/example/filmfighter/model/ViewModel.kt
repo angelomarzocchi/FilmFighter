@@ -25,38 +25,38 @@ class ViewModel : ViewModel() {
         hosting = true
     }
 
+    fun join() {
+        hosting = false
+    }
+
     private val _currentQuestionIndex = MutableLiveData<Int>(-1)
     val currentQuestionIndex: LiveData<Int> = _currentQuestionIndex
-
-    private fun incrementCurrentQuestionCounter() {
-        _currentQuestionIndex.value = _currentQuestionIndex.value!! + 1
-    }
 
     private val _isGameStarted = MutableLiveData<Boolean>(false)
     val isGameStarted: LiveData<Boolean> = _isGameStarted
 
-    fun startGame() {
-        _isGameStarted.value = true
-    }
-
     private var numberOfVotes = 0
-
-
-    fun vote(fighter: String, vote: Int) {
-        _fighters.value?.find { it.name == fighter }?.answers?.set(
-            _currentQuestionIndex.value!!,
-            vote
-        )
-        numberOfVotes++
-        Log.d("numberOfVotes", numberOfVotes.toString())
-        if (numberOfVotes == _fighters.value!!.size)
-            nextQuestion()
-    }
-
 
     private val _fighters = MutableLiveData<List<Fighter>>()
     val fighters: LiveData<List<Fighter>> = _fighters
     var myName: String = ""
+
+    private val _questions = MutableLiveData<List<Question>>(QuestionsList.value)
+    val questions: LiveData<List<Question>> = _questions
+
+    private val _currentQuestion = MutableLiveData<Question>()
+    val currentQuestion: LiveData<Question> = _currentQuestion
+
+    private val _winners = MutableLiveData<List<Fighter>>()
+    val winners: LiveData<List<Fighter>> = _winners
+
+
+
+
+
+    fun startGame() {
+        _isGameStarted.value = true
+    }
 
     fun onConfirmedName(name: String) {
         myName = name
@@ -74,11 +74,10 @@ class ViewModel : ViewModel() {
 
     }
 
-    private val _questions = MutableLiveData<List<Question>>(QuestionsList.value)
-    val questions: LiveData<List<Question>> = _questions
+    private fun incrementCurrentQuestionCounter() {
+        _currentQuestionIndex.value = _currentQuestionIndex.value!! + 1
+    }
 
-    private val _currentQuestion = MutableLiveData<Question>()
-    val currentQuestion: LiveData<Question> = _currentQuestion
 
     fun nextQuestion() {
         numberOfVotes = 0
@@ -87,8 +86,27 @@ class ViewModel : ViewModel() {
     }
 
 
-    private val _winners = MutableLiveData<List<Fighter>>()
-    val winners: LiveData<List<Fighter>> = _winners
+    fun vote(fighter: String, vote: Int) {
+        _fighters.value?.find { it.name == fighter }?.answers?.set(
+            _currentQuestionIndex.value!!,
+            vote
+        )
+        numberOfVotes++
+
+        if (numberOfVotes == _fighters.value!!.size)
+            nextQuestion()
+    }
+
+
+
+
+    private fun evaluateAnswer(fighter: Fighter) {
+        for (i in 0 until questions.value!!.size) {
+            if (questions.value!![i].rightAnswer == fighter.answers[i])
+                fighter.points += 10
+        }
+
+    }
 
 
     fun computeWinner() {
@@ -101,13 +119,7 @@ class ViewModel : ViewModel() {
     }
 
 
-    private fun evaluateAnswer(fighter: Fighter) {
-        for (i in 0 until questions.value!!.size) {
-            if (questions.value!![i].rightAnswer == fighter.answers[i])
-                fighter.points += 10
-        }
 
-    }
 
 
     // dati e funzioni riguardanti le API dei film
@@ -129,8 +141,7 @@ class ViewModel : ViewModel() {
     private val _searchedMovies = MutableLiveData<List<Movie>>()
     val searchedMovies: LiveData<List<Movie>> = _searchedMovies
 
-    private val _winnersMovies = MutableLiveData<List<Movie>>()
-    val winnersMovies: LiveData<List<Movie>> = _winnersMovies
+
 
 
     private val _trendingMovieStatus =
@@ -203,15 +214,19 @@ class ViewModel : ViewModel() {
     }
 
     fun resetGame() {
+        hosting = false
         _fighters.value = mutableListOf()
+        numberOfVotes = 0
         _isGameStarted.value = false
+        _currentQuestionIndex.value = -1
+        nextQuestion()
     }
 
 
     init {
         getTrendingMovies()
         resetGame()
-        nextQuestion()
+        //nextQuestion()
         _questions.value = QuestionsList.value
     }
 

@@ -25,18 +25,6 @@ class MainFragment : Fragment() {
             .inflate(inflater,container,false)
         binding = fragmentMainBinding
 
-        /*
-        lifecycleScope.launch {
-            viewModel.trendingMovieApiStatus.collect {
-                when(viewModel.trendingMovieApiStatus.value) {
-                    TrendingMovieApiStatus.FAILED -> Toast.makeText(context,"Failed to collect data",Toast.LENGTH_SHORT).show()
-                    TrendingMovieApiStatus.DONE -> Toast.makeText(context,viewModel.trendingMovies.value!!.results[0].title,Toast.LENGTH_SHORT).show()
-                    else -> {}
-                }
-            }
-        }
-        */
-
         return binding.root
     }
 
@@ -44,7 +32,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             hostGameButton.setOnClickListener { hostGame() }
-            joinGameButton.setOnClickListener { chooseFilm() }
+            joinGameButton.setOnClickListener { joinGame() }
         }
     }
 
@@ -63,5 +51,11 @@ class MainFragment : Fragment() {
         chooseFilm()
 
     }
+
+    private fun joinGame() {
+        viewModel.join()
+        chooseFilm()
+    }
+
 
 }

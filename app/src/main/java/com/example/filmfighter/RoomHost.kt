@@ -38,7 +38,6 @@ class RoomHost : Fragment() {
 
         binding.recyclerView.adapter = FighterListAdapter()
 
-        movieViewModel.resetGame()
 
 
         return binding.root

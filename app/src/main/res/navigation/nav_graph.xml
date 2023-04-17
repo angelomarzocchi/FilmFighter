@@ -45,5 +45,11 @@
         android:id="@+id/winnerFragment"
         android:name="com.example.filmfighter.WinnerFragment"
         android:label="Winner"
-        tools:layout="@layout/fragment_winner" />
+        tools:layout="@layout/fragment_winner" >
+        <action
+            android:id="@+id/action_winnerFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
