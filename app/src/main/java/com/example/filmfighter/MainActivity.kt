@@ -251,6 +251,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onStop() {
+        stopNearbyConnections()
+        super.onStop()
+    }
+
 
 
 

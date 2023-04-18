@@ -8,13 +8,13 @@ data class Question(val question: String, val answers: List<String>, val rightAn
 object QuestionsList{
 
          val value: List<Question> = listOf(
-        Question("Come si chiama il protagonista di Titanic ?",listOf("Jack","Mario","Raphael","Christian"),0),
-        Question("Chi é il regista di The Prestige ?",listOf("Burton","Nolan","Tarantino","Vanzina"),1),
-        Question("Chi é il custode delle chiavi in Harry Potter ?",listOf("Hagrid","Hermione","Gazza","Silente"),0),
-        Question("In quale film é presente Jack Sparrow?",listOf("Titanic","Batman","Pirati dei caraibi","Io Robot"),2),
-        Question("Quale film ha come protagonista un cyborg?",listOf("Terminator","Matrix","Blade Runner","Inception"),0),
-        Question("In quale film Tom Hanks interpreta un naufrago?",listOf("Il Miglio Verde","Forrest Gump","Il codice Da vinci","Cast Away"),3),
-        Question("Quale film ha come protagonista un ex poliziotto che cerca di salvare sua figlia rapita?",listOf("Taken","John Wick","l'esorcista","Lo squalo"),0)
+        Question("What is the name of the main character in Titanic ?",listOf("Jack","Mario","Raphael","Christian"),0),
+        Question("Who is the director of The Prestige ?",listOf("Burton","Nolan","Tarantino","Vanzina"),1),
+        Question("Who is the keeper of the keys in Harry Potter ?",listOf("Hagrid","Hermione","Filch","Silente"),0),
+        Question("In which movie is Jack Sparrow featured?",listOf("Titanic","Batman","Pirates of the Caribbean","I, Robot"),2),
+        Question("Which movie features a cyborg as the main character?",listOf("Terminator","Matrix","Blade Runner","Inception"),0),
+        Question("In which movie does Tom Hanks play a castaway?",listOf("The Green Mile","Forrest Gump","The Da Vinci Code","Cast Away"),3),
+        Question("Which movie stars a former policeman who tries to rescue his kidnapped daughter?",listOf("Taken","John Wick","The Exorcist","Jaws"),0)
 
         )
 

@@ -48,10 +48,13 @@ class QuestionFragment : Fragment() {
 
 
         movieViewModel.currentQuestionIndex.observe(viewLifecycleOwner) {
+            binding.indexTextView.text = getString(R.string.index,it+1)
             if(it == 5)
                 findNavController()
                     .navigate(R.id.action_questionFragment_to_winnerFragment)
         }
+
+
 
 
 

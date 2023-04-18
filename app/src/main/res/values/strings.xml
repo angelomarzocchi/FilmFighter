@@ -18,4 +18,5 @@
     <string name="points">Points:</string>
     <string name="movie">Movie:</string>
     <string name="end_game">End Game</string>
+    <string name="index">%d/5</string>
 </resources>

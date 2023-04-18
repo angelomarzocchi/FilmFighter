@@ -19,6 +19,15 @@
         tools:context=".QuestionFragment">
 
         <TextView
+            android:id="@+id/index_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="20dp" />
+
+        <TextView
             android:id="@+id/question_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
